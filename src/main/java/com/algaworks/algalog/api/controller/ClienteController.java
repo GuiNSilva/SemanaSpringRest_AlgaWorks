@@ -2,6 +2,8 @@ package com.algaworks.algalog.api.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,14 +49,14 @@ public class ClienteController {
 	 //implementação do metodo post
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)//Mudando o retorno 200 para 201 created
-	public Cliente adicionar(@ RequestBody Cliente cliente) {
+	public Cliente adicionar( @Valid @ RequestBody Cliente cliente) {
 		return clienteRepository.save(cliente);
 		
 	}
 	
-	//implementação do metodo Atualizar
+	//implementação do metodo Atualizar @valid para fazer a validacao na entrada do metodo.
 	@PutMapping("/{clienteId}")
-	public ResponseEntity<Cliente>atualizar(@PathVariable Long clienteId,
+	public ResponseEntity<Cliente>atualizar( @Valid @PathVariable Long clienteId,
 			@RequestBody Cliente cliente){
 		if(!clienteRepository.existsById(clienteId)) {// verificando se o cliente não existe
 			return ResponseEntity.notFound().build();

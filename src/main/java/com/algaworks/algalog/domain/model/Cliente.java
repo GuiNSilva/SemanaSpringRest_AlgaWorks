@@ -6,6 +6,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -21,9 +26,25 @@ public class Cliente {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	/* Anotations do Bean Validation, dependencia io validation adicionada o projeto.
+	 * Anotation @NotBlank não permite que o campo esteja vazio ou nulo.
+	 * @Size para limitar o tamanho do campo, evita conflito com o tamanho do campo no BD.
+	 * @Email valida o formato correto para o campo email.
+	 * */
+	
+	
+	
+	@NotBlank
+	@Size(max = 60)
 	private String nome;
+	
+	@NotBlank @Email @Size(max = 255)
 	private String email;
+	
+	@NotBlank @Size(max = 20)
 	private String telefone;
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
