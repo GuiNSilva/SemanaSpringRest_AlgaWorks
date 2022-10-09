@@ -16,12 +16,14 @@ public class CatalogoClienteService {
 	private ClienteRepository clienteRepository;
 	
 	//metodo para salvar um cliente
+	
+	
 	@Transactional
 	public Cliente salvar(Cliente cliente) {
 		//regra para verificar se já existe o email cadastrado
 		boolean emailEmUso = clienteRepository.findByEmail(cliente.getEmail())
 				.stream()
-				.anyMatch(clienteExistente ->!clienteExistente.equals(cliente));
+				.anyMatch(clienteExistente -> !clienteExistente.equals(cliente));
 		
 		if(emailEmUso) {
 			throw new NegocioException("Já existe um cliente cadastrado com este e-mail");

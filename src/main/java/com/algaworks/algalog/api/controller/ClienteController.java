@@ -21,12 +21,12 @@ import com.algaworks.algalog.domain.model.Cliente;
 import com.algaworks.algalog.domain.repository.ClienteRepository;
 import com.algaworks.algalog.domain.service.CatalogoClienteService;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 @RestController
 @RequestMapping("/clientes")//mapeando o get a nivel de classe
 public class ClienteController {
-	
-	
-	
 	@Autowired
 	private ClienteRepository clienteRepository;
 	private CatalogoClienteService catalogoClienteService; 

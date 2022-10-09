@@ -44,7 +44,9 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 		}
 		/*
 		 * personalizando a mensagem de erro com 
-		 * objeto problema que foi criado para isso*/
+		 * objeto problema que foi criado para isso
+		 */
+		
 		Problema problema = new Problema();
 		problema.setStatus(status.value());
 		problema.setDataHora(LocalDateTime.now());
@@ -54,15 +56,15 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	} 
 	
 	@ExceptionHandler(NegocioException.class)
-	public ResponseEntity<Object> handleNegocio(NegocioException ex, WebRequest request ){
+	public ResponseEntity<Object> handleNegocio(NegocioException excecao, WebRequest request ){
 		HttpStatus status = HttpStatus.BAD_REQUEST;
 		
 		Problema problema = new Problema();
 		problema.setStatus(status.value());
 		problema.setDataHora(LocalDateTime.now());
-		problema.setTitulo(ex.getMessage());
+		problema.setTitulo(excecao.getMessage());
 		
-		return handleExceptionInternal(ex, problema , new HttpHeaders(), status, request);
+		return handleExceptionInternal(excecao, problema , new HttpHeaders(), status, request);
 		
 	}
 

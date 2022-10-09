@@ -1,4 +1,4 @@
-package com.algaworks.algalog.api.exceptionhandler;
+ package com.algaworks.algalog.api.exceptionhandler;
 
 import java.time.LocalDateTime;
 import java.util.List;
